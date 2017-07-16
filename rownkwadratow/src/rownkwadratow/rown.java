@@ -3,24 +3,24 @@ import java.lang.Math;
 
 public class rown 
 {
-	public static void gen_pierw(double A, double B, double C)
+	public static double[] gen_pierw(double A, double B, double C) //nie dziala bez static
 	{
 		double delta = B*B-4*A*C;
-		double x1, x2;
+		double x[]={0,0,0,0};
 		if(A==0)
 		{
 			System.out.println("To nie jest rownanie kwadratowe");
 		}
 		else if(delta>0)
 		{
-			x1=((-B)-Math.sqrt(delta))/2*A;
-			x2=((-B)+Math.sqrt(delta))/2*A;
-			System.out.println("Rozwiazaniami rownania kwadratowego sa: "+x1+" i "+x2+". ");
+			x[0]=((-B)-Math.sqrt(delta))/2*A;
+			x[2]=((-B)+Math.sqrt(delta))/2*A;
+			System.out.println("Rozwiazaniami rownania kwadratowego sa: "+x[0]+" i "+x[2]+". ");
 		}
 		else if(delta==0)
 		{
-			x1=(-B)/(2*A);
-			System.out.println("Rozwiazanie ma jeden pierwiastek podwojny: "+x1+". ");
+			x[0]=x[2]=(-B)/(2*A);
+			System.out.println("Rozwiazanie ma jeden pierwiastek podwojny: "+x[0]+". ");
 		}
 		else if(delta<0)
 		{
@@ -31,12 +31,12 @@ public class rown
 			u1.setU(Math.sqrt(delta)/(2*A));
 			u2.setR((-B)/(2*A));
 			u2.setU((-Math.sqrt(delta))/(2*A));
+			x[0]=u1.R;
+			x[1]=u1.U;
+			x[2]=u2.R;
+			x[3]=u2.U;
 			System.out.println("Rozwiazaniami rownania kwadratowego sa: "+u1.liczbaZ()+" i "+u2.liczbaZ()+". ");
 		}
-	}
-	public static void main(String[] args)
-	{
-			// test
-			gen_pierw(1,2,1);
+		return x;
 	}
 }
